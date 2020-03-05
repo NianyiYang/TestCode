@@ -4,7 +4,7 @@ class MergeLinkList {
     /**
      * 三指针倒序遍历，原地操作，空间复杂度 O(1)
      **/
-    fun merge(A: IntArray, m: Int, B: IntArray, n: Int): Unit {
+    fun merge(A: IntArray, m: Int, B: IntArray, n: Int) {
         var p = m - 1
         var q = n - 1
         var cur = m + n - 1

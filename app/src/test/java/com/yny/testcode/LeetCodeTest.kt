@@ -23,4 +23,16 @@ class LeetCodeTest {
         //使用hamcrest进行assert，直观，易读
         assertThat(result, `is`(intArrayOf(0, 1)))
     }
+
+    @Test
+    fun orangesRotting() {
+        val breadthFirstSearch = BreadthFirstSearch()
+        val result = breadthFirstSearch.orangesRotting(
+            arrayOf(
+                intArrayOf(1, 2)
+            )
+        )
+
+        assertThat(result, `is`(1))
+    }
 }
