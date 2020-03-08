@@ -35,4 +35,17 @@ class LeetCodeTest {
 
         assertThat(result, `is`(1))
     }
+
+    @Test
+    fun findContinuousSequence() {
+        val slidingWindow = SlidingWindow()
+        val result = slidingWindow.findContinuousSequence(9)
+
+        assertThat(result, `is`(
+            arrayOf(
+                intArrayOf(2,3,4),
+                intArrayOf(4,5)
+            )
+        ))
+    }
 }
