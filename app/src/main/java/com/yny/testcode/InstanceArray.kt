@@ -1,6 +1,6 @@
 package com.yny.testcode
 
-class MergeLinkList {
+class InstanceArray {
     /**
      * 三指针倒序遍历，原地操作，空间复杂度 O(1)
      **/

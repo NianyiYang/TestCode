@@ -41,11 +41,28 @@ class LeetCodeTest {
         val slidingWindow = SlidingWindow()
         val result = slidingWindow.findContinuousSequence(9)
 
-        assertThat(result, `is`(
-            arrayOf(
-                intArrayOf(2,3,4),
-                intArrayOf(4,5)
+        assertThat(
+            result, `is`(
+                arrayOf(
+                    intArrayOf(2, 3, 4),
+                    intArrayOf(4, 5)
+                )
             )
-        ))
+        )
+    }
+
+    @Test
+    fun diameterOfBinaryTree() {
+
+        val tree = BinaryTree.TreeNode(1)
+        tree.left = BinaryTree.TreeNode(2)
+        tree.right = BinaryTree.TreeNode(3)
+        tree.left!!.left = BinaryTree.TreeNode(4)
+        tree.left!!.right = BinaryTree.TreeNode(5)
+
+        val binaryTree = BinaryTree()
+        val result = binaryTree.diameterOfBinaryTree(tree)
+
+        assertThat(result, `is`(3))
     }
 }

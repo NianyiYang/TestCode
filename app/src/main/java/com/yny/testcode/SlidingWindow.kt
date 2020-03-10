@@ -1,6 +1,7 @@
 package com.yny.testcode
 
 import java.util.*
+import kotlin.Array
 
 /**
  * 滑动窗口算法
