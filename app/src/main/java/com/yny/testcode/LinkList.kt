@@ -56,8 +56,8 @@ class LinkList {
      * 反转一个单链表
      */
     fun reverseList(head: ListNode?): ListNode? {
-        var prev:ListNode? = null
-        var curr:ListNode? = head
+        var prev: ListNode? = null
+        var curr: ListNode? = head
 
         while (curr != null) {
             val next = curr.next
@@ -67,5 +67,54 @@ class LinkList {
         }
 
         return prev
+    }
+
+    /**
+     * 2. 两数相加
+     *
+     * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
+     * 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
+     * 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+     */
+    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+
+        if (l1 == null && l2 == null) {
+            return null
+        } else {
+
+            val prevHead = ListNode(-1)
+
+            // 将头结点连接起来
+            var curr = prevHead
+
+            var p = l1
+            var q = l2
+
+            var carry = 0
+
+            while (p != null || q != null) {
+                val result = (p?.`val` ?: 0) + (q?.`val` ?: 0) + carry
+
+                curr.next = ListNode(result % 10)
+
+                carry = result / 10
+
+                if (p != null) {
+                    p = p.next
+                }
+                if (q != null) {
+                    q = q.next
+                }
+
+                curr = curr.next!!
+            }
+
+            // 处理最后一个进位
+            if (carry == 1) {
+                curr.next = ListNode(carry)
+            }
+
+            return prevHead.next
+        }
     }
 }
