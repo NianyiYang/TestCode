@@ -81,4 +81,12 @@ class LeetCodeTest {
 
         assertThat(result, `is`(6))
     }
+
+    @Test
+    fun isUgly() {
+        val exampleNumber = ExampleNumber()
+        val result = exampleNumber.isUgly(1)
+
+        assertThat(result, `is`(true))
+    }
 }

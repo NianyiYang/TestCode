@@ -31,4 +31,36 @@ class ExampleNumber {
 
         return result
     }
+
+    /**
+     * 263. 丑数
+     *
+     * 编写一个程序判断给定的数是否为丑数。
+     *
+     * 丑数就是只包含质因数 2, 3, 5 的正整数。
+     */
+    fun isUgly(num: Int): Boolean {
+
+        var temp = num
+
+        if (temp == 1) {
+            return true
+        } else if (temp % 2 != 0 && temp % 3 != 0 && temp % 5 != 0) {
+            return false
+        } else {
+            while (temp != 0 && temp % 2 == 0) {
+                temp /= 2
+            }
+
+            while (temp != 0 && temp % 3 == 0) {
+                temp /= 3
+            }
+
+            while (temp != 0 && temp % 5 == 0) {
+                temp /= 5
+            }
+        }
+
+        return temp == 1
+    }
 }
