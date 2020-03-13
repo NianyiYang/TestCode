@@ -65,4 +65,20 @@ class LeetCodeTest {
 
         assertThat(result, `is`(3))
     }
+
+    @Test
+    fun majorityElement() {
+        val exampleArray = ExampleArray()
+        val result = exampleArray.majorityElement(intArrayOf(2, 2, 1, 1, 1, 2, 2))
+
+        assertThat(result, `is`(3))
+    }
+
+    @Test
+    fun maxSubArray() {
+        val exampleArray = ExampleArray()
+        val result = exampleArray.maxSubArray(intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4))
+
+        assertThat(result, `is`(6))
+    }
 }
