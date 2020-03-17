@@ -94,4 +94,55 @@ class ExampleString {
 
         return str1.substring(0, gcd(str1.length, str2.length))
     }
+
+    /**
+     * 1160. 拼写单词
+     *
+     * 给你一份『词汇表』（字符串数组） words 和一张『字母表』（字符串） chars。
+     * 假如你可以用 chars 中的『字母』（字符）拼写出 words 中的某个『单词』（字符串），那么我们就认为你掌握了这个单词。
+     * 注意：每次拼写时，chars 中的每个字母都只能用一次。
+     * 返回词汇表 words 中你掌握的所有单词的 长度之和
+     */
+    fun countCharacters(words: Array<String>, chars: String): Int {
+
+        // 先把 chars 转成 map
+        val charsMap = getMap(chars)
+
+        var totalCount = 0
+
+        // 遍历 words 列表
+        for (word in words) {
+            val wordMap = getMap(word)
+            var singleCount = 0
+            for (entry in wordMap) {
+                if (charsMap.contains(entry.key) && entry.value <= charsMap.getValue(entry.key)) {
+                    // 如果字母表中存在该字符，且该字符在该词中存在的数量比字母表少，则计数增加
+                    singleCount += entry.value
+                } else {
+                    // 反之 singleCount 重置，并break
+                    singleCount = 0
+                    break
+                }
+            }
+
+            totalCount += singleCount
+        }
+
+        return totalCount
+    }
+
+    private fun getMap(chars: String): HashMap<Char, Int> {
+        val map = hashMapOf<Char, Int>()
+
+        for (char in chars) {
+            if (map.contains(char)) {
+                var value = map.getValue(char)
+                map[char] = ++value
+            } else {
+                map[char] = 1
+            }
+        }
+
+        return map
+    }
 }

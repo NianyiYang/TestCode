@@ -89,4 +89,21 @@ class LeetCodeTest {
 
         assertThat(result, `is`(true))
     }
+
+    @Test
+    fun countCharacters() {
+        val exampleString = ExampleString()
+        val result = exampleString.countCharacters(
+            arrayOf(
+                "skwgxuuuumkfurejmqrbipvlavdrozjyxhagbwetabjwevfsegqfpllgafm",
+                "ufvpzzgpswnk",
+                "tcouxmlrnfyoxvkeglchhryykmdvgvdxpookbtiyhuthoqsnqbowewpfgbcy",
+                "qwpttmxzazkkfqqtrnkaejifligdvgnyvtmppjbkeuqryxzqyegttvhzolpztvigxygzvsppurijaekb",
+                "vbtvbheurzbglzljczmziitkbmtoybiwhoyfrsxvfveaxchebjdzdnnispzwbrgrbcdaistps"
+            ),
+            "avyteswqppomeojxoybotzriuvxolmllevluauwb"
+        )
+
+        assertThat(result, `is`(0))
+    }
 }
