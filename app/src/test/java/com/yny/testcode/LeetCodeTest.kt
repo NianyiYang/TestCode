@@ -106,4 +106,15 @@ class LeetCodeTest {
 
         assertThat(result, `is`(0))
     }
+
+    @Test
+    fun isRectangleOverlap() {
+        val exampleRect = ExampleRect()
+        val result = exampleRect.isRectangleOverlap(
+            intArrayOf(0, 0, 1, 1),
+            intArrayOf(1, 0, 2, 1)
+        )
+
+        assertThat(result, `is`(false))
+    }
 }
