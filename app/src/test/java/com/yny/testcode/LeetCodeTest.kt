@@ -117,4 +117,23 @@ class LeetCodeTest {
 
         assertThat(result, `is`(false))
     }
+
+    @Test
+    fun longestPalindrome() {
+        val exampleString = ExampleString()
+        val result =
+            exampleString.longestPalindrome(
+                "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"
+            )
+
+        assertThat(result, `is`(983))
+    }
+
+    @Test
+    fun maxProfit() {
+        val stock = Stock()
+        val result = stock.maxProfit(intArrayOf(2, 4, 1))
+
+        assertThat(result, `is`(5))
+    }
 }

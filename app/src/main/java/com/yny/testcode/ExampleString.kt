@@ -145,4 +145,35 @@ class ExampleString {
 
         return map
     }
+
+    /**
+     * 409. 最长回文串
+     */
+    fun longestPalindrome(s: String): Int {
+        val charMap = getMap(s)
+
+        var count = 0
+
+        for (entry in charMap) {
+            if (entry.value > 1) {
+                if (entry.value % 2 == 0) {
+                    count += entry.value
+                    entry.setValue(0)
+                } else {
+                    count += entry.value - 1
+                    entry.setValue(1)
+                }
+            }
+        }
+
+        // 只遍历一次
+        for (entry in charMap) {
+            if (entry.value == 1) {
+                count++
+                break
+            }
+        }
+
+        return count
+    }
 }

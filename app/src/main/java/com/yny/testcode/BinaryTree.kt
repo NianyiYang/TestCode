@@ -9,6 +9,12 @@ import kotlin.math.max
  * @date 2020-03-10 16:06
  */
 class BinaryTree {
+
+    class TreeNode(var `val`: Int) {
+        var left: TreeNode? = null
+        var right: TreeNode? = null
+    }
+
     /**
      * 543. 二叉树的直径
      *
@@ -16,7 +22,7 @@ class BinaryTree {
      *
      * 注意：最大值不一定要包含根节点
      */
-    private var diam:Int = 0
+    private var diam: Int = 0
 
     fun diameterOfBinaryTree(root: TreeNode?): Int {
         dfs(root)
@@ -37,8 +43,45 @@ class BinaryTree {
         return max(leftDiam, rightDiam) + 1
     }
 
-    class TreeNode(var `val`: Int) {
-        var left: TreeNode? = null
-        var right: TreeNode? = null
+    /**
+     * 101. 对称二叉树
+     */
+    fun isSymmetric(root: TreeNode?): Boolean {
+        // 递归
+        if (root == null) {
+            return true
+        }
+
+        return symmetric(root.left, root.right)
+    }
+
+    private fun symmetric(left: TreeNode?, right: TreeNode?): Boolean {
+
+        return if (left == null && right == null) {
+            true
+        } else if (left == null || right == null) {
+            false
+        } else if (left.`val` != right.`val`) {
+            false
+        } else {
+            symmetric(left.left, right.right) && symmetric(left.right, right.left)
+        }
+    }
+
+    /**
+     * 104. 二叉树的最大深度
+     */
+    fun maxDepth(root: TreeNode?): Int {
+        return if (root == null) {
+            0
+        } else if (root.left == null && root.right == null) {
+            1
+        } else if (root.left == null && root.right != null) {
+            maxDepth(root.right) + 1
+        } else if (root.left != null && root.right == null) {
+            maxDepth(root.left) + 1
+        } else {
+            max(maxDepth(root.left), maxDepth(root.right)) + 1
+        }
     }
 }
