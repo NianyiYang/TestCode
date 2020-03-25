@@ -117,4 +117,26 @@ class LinkList {
             return prevHead.next
         }
     }
+
+    /**
+     * 876. 链表的中间结点
+     *
+     * 快慢指针
+     **/
+    fun middleNode(head: ListNode?): ListNode? {
+ 
+        var p = head
+        var q = head
+
+        while (p?.next != null) {
+            p = if (p.next?.next != null) {
+                p.next?.next
+            } else {
+                p.next
+            }
+            q = q!!.next
+        }
+
+        return q
+    }
 }
