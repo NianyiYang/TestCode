@@ -132,8 +132,8 @@ class LeetCodeTest {
     @Test
     fun maxProfit() {
         val stock = Stock()
-        val result = stock.maxProfit(intArrayOf(2, 4, 1))
+        val result = stock.maxProfit(intArrayOf(3, 2, 6, 5, 0, 3))
 
-        assertThat(result, `is`(5))
+        assertThat(result, `is`(4))
     }
 }

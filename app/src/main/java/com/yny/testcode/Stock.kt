@@ -1,5 +1,7 @@
 package com.yny.testcode
 
+import kotlin.math.max
+
 /**
  * 股票相关
  *
@@ -12,29 +14,29 @@ class Stock {
      */
     fun maxProfit(prices: IntArray): Int {
 
-        if(prices.size == 0) {
-            return 0
-        }
-
-        // buy要在sell之前
+        // 滑动窗口
         var buyPos = 0
         var sellPos = 0
 
-        var buy = prices[0]
-        var sell = -1
+        var value = 0
 
-        for (i in 1 until prices.size) {
-            if (buy > prices[i]) {
-                buy = prices[i]
-                buyPos = i
+        for (i in prices.indices) {
+
+            if (i == 0) {
+                continue
             }
 
-            if (prices[i] > sell) {
-                sell = prices[i]
+            if (prices[i - 1] < prices[i] && prices[sellPos] < prices[i]) {
                 sellPos = i
             }
+            if (prices[i - 1] >= prices[i] && prices[buyPos] >= prices[i]) {
+                buyPos = i
+                sellPos = i
+            }
+
+            value = max(prices[sellPos] - prices[buyPos],value)
         }
 
-        return if (sell - buy > 0 && buyPos < sellPos) sell - buy else 0
+        return value
     }
 }
