@@ -124,7 +124,7 @@ class LinkList {
      * 快慢指针
      **/
     fun middleNode(head: ListNode?): ListNode? {
- 
+
         var p = head
         var q = head
 

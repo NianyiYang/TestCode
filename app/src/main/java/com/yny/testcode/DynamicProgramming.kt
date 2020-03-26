@@ -48,4 +48,33 @@ class DynamicProgramming {
         return dp[n]
     }
 
+    /**
+     * 198. 打家劫舍
+     * 面试题 17.16. 按摩师
+     */
+    fun massage(nums: IntArray): Int {
+        val length = nums.size
+
+        if(length == 0) {
+            return 0
+        }
+
+        val dp = IntArray(length)
+
+        for (i in nums.indices) {
+            when (i) {
+                0 -> {
+                    dp[i] = nums[i]
+                }
+                1 -> {
+                    dp[i] = max(dp[0], nums[1])
+                }
+                else -> {
+                    dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])
+                }
+            }
+        }
+
+        return dp[dp.size - 1]
+    }
 }
