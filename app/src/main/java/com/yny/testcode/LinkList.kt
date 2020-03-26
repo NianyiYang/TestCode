@@ -139,4 +139,25 @@ class LinkList {
 
         return q
     }
+
+    /**
+     * 141. 环形链表
+     *
+     * 快慢指针 步长间隔为1，说明有环的时候一定会撞在一起
+     */
+    fun hasCycle(head: ListNode?): Boolean {
+        var p = head
+        var q = head
+
+        while (p?.next != null && q?.next != null) {
+            p = p.next?.next
+            q = q.next
+
+            if (p == q) {
+                return true
+            }
+        }
+
+        return false
+    }
 }

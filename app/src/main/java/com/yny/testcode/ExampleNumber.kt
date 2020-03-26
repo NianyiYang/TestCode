@@ -63,4 +63,24 @@ class ExampleNumber {
 
         return temp == 1
     }
+
+    /**
+     * 136. 只出现一次的数字
+     *
+     * 要求 线性时间复杂度 空间复杂度为O(1)
+     */
+    fun singleNumber(nums: IntArray): Int {
+
+        // 方法1 HashMap
+        // 方法2 2 * (a+b+c) - (a+a+b+b+c) = c
+        // 方法3 通过异或 a xor b xor a = b
+        // 异或 满足 交换律 和 结合律
+        var result = 0
+
+        for (i in nums) {
+            result = result xor i
+        }
+
+        return result
+    }
 }
