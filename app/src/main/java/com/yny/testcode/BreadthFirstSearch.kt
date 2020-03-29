@@ -1,7 +1,6 @@
 package com.yny.testcode
 
 import java.util.*
-import kotlin.Array
 
 /**
  * 与广度优先搜索相关的题目
@@ -65,7 +64,7 @@ class BreadthFirstSearch {
                 // 注意 poll 是队列出队方法 push 是栈出栈方法
                 val cur = queue.poll()
 
-                if(cur != null) {
+                if (cur != null) {
                     val x = cur[0]
                     val y = cur[1]
 
@@ -101,5 +100,66 @@ class BreadthFirstSearch {
         }
 
         return if (freshOrangeCount > 0) -1 else depth
+    }
+
+    /**
+     * 1162. 地图分析
+     */
+    fun maxDistance(grid: Array<IntArray>): Int {
+        // 多源广度优先遍历
+
+        // 首先找出所有陆地，加入队列
+        val queue: Queue<IntArray> = LinkedList()
+        for (i in grid.indices) {
+            for (j in grid[i].indices) {
+                if (grid[i][j] == 1) {
+                    queue.offer(intArrayOf(i, j))
+                }
+            }
+        }
+
+        // 没有陆地
+        if (queue.isEmpty()) {
+            return -1
+        }
+
+        // 又用到方向数组
+        val dx = intArrayOf(-1, 0, 1, 0)
+        val dy = intArrayOf(0, -1, 0, 1)
+
+        // 一个标识，判断是否存在海洋
+        var hasOcean = false
+        var depth = 0
+
+        // 开始针对每一个陆地，向海洋扩散
+        while (queue.isNotEmpty()) {
+            val point = queue.poll()
+            val x = point!![0]
+            val y = point[1]
+
+            for (k in 0 until 4) {
+                val nx = x + dx[k]
+                val ny = y + dy[k]
+
+                if (nx >= 0 && nx < grid.size && ny >= 0 && ny < grid[0].size) {
+                    if (grid[nx][ny] == 0) {
+                        // 表示是海洋 还未被访问
+                        grid[nx][ny] = grid[x][y] + 1
+                        // 并将该点加入队列
+                        queue.offer(intArrayOf(nx, ny))
+                        // 存在海洋
+                        hasOcean = true
+                        // depth
+                        depth = grid[nx][ny]
+                    }
+                }
+            }
+        }
+
+        if (!hasOcean) {
+            return -1
+        }
+
+        return depth - 1
     }
 }
