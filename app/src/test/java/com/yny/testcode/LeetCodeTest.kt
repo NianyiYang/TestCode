@@ -136,4 +136,38 @@ class LeetCodeTest {
 
         assertThat(result, `is`(4))
     }
+
+    @Test
+    fun hasGroupsSizeX() {
+        val exampleArray = ExampleArray()
+        val result = exampleArray.hasGroupsSizeX(
+            intArrayOf(
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3
+            )
+        )
+
+        assertThat(result, `is`(false))
+    }
 }

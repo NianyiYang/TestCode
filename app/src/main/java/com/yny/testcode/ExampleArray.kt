@@ -128,4 +128,59 @@ class ExampleArray {
 //        return result
         return -1
     }
+
+    /**
+     * 914. 卡牌分组
+     */
+    fun hasGroupsSizeX(deck: IntArray): Boolean {
+        val map: HashMap<Int, Int> = HashMap()
+
+        for (d in deck) {
+            if (!map.contains(d)) {
+                map[d] = 1
+            } else {
+                val value = map[d] ?: 1
+                map[d] = value + 1
+            }
+        }
+
+        if (map.isEmpty()) {
+            return false
+        }
+
+        var minCount = Int.MAX_VALUE
+        for (entry in map.entries) {
+            if (minCount > entry.value) {
+                minCount = entry.value
+            }
+        }
+
+        var g = -1
+
+        for (entry in map.entries) {
+
+            // 这里要求所有count的最大公约数
+            g = if (g == -1) {
+                entry.value
+            } else {
+                gcd(entry.value, g)
+            }
+        }
+
+        return g > 1
+    }
+
+    private fun gcd(a: Int, b: Int): Int {
+        // 非递归
+        var tempA = if (a > b) a else b
+        var tempB = if (a > b) b else a
+
+        while (tempB != 0) {
+            val temp = tempB
+            tempB = tempA % tempB
+            tempA = temp
+        }
+
+        return tempA
+    }
 }
