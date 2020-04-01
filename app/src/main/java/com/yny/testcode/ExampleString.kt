@@ -176,4 +176,37 @@ class ExampleString {
 
         return count
     }
+
+    /**
+     * 1111. 有效括号的嵌套深度
+     *
+     * 1. 计算每个括号的嵌套深度
+     * 2. 因为需要尽量均分，所以按 奇偶分配 #@%￥……￥&…… 什么鬼
+     */
+    fun maxDepthAfterSplit(seq: String): IntArray {
+        // 存储括号深度
+        val depthArray = IntArray(seq.length)
+
+        // 模拟栈
+        var stack = 0
+
+        for (i in seq.indices) {
+            val char = seq[i]
+            if(char == '(') {
+                stack++
+                depthArray[i] = stack
+            } else if(char == ')') {
+                depthArray[i] = stack
+                stack--
+            }
+        }
+
+        for (i in depthArray.indices) {
+            val depth = depthArray[i]
+            // 对2取余即可分组
+            depthArray[i] = depth % 2
+        }
+
+        return depthArray
+    }
 }

@@ -86,8 +86,18 @@ class ExampleNumber {
 
     /**
      * 面试题62. 圆圈中最后剩下的数字
+     * 約瑟夫環
      */
     fun lastRemaining(n: Int, m: Int): Int {
+        return ring(n, m)
+    }
 
+    private fun ring(n: Int, m: Int): Int {
+        return if (n == 1) {
+            0
+        } else {
+            val x = ring(n - 1, m)
+            (m + x) % n
+        }
     }
 }
