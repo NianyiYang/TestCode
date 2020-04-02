@@ -1,5 +1,6 @@
 package com.yny.testcode
 
+import com.yny.testcode.common.Utils
 import kotlin.math.min
 
 class ExampleString {
@@ -53,32 +54,12 @@ class ExampleString {
         val length1 = str1.length
         val length2 = str2.length
 
-        val x = str1.substring(0, gcd(length1, length2))
+        val x = str1.substring(0, Utils.gcd(length1, length2))
         if (checkStringEqual(str1, x) && checkStringEqual(str2, x)) {
             return x
         }
 
         return ""
-    }
-
-    /**
-     * 辗转相除法，求最大公约数
-     */
-    private fun gcd(a: Int, b: Int): Int {
-//        // 非递归
-//        var tempA = if (a > b) a else b
-//        var tempB = if (a > b) b else a
-//
-//        while (tempB != 0) {
-//            val temp = tempB
-//            tempB = tempA % tempB
-//            tempA = temp
-//        }
-//
-//        return tempA
-
-        // 递归 必须 a>b
-        return if (b == 0) a else gcd(b, a % b)
     }
 
     /**
@@ -92,7 +73,7 @@ class ExampleString {
             return ""
         }
 
-        return str1.substring(0, gcd(str1.length, str2.length))
+        return str1.substring(0, Utils.gcd(str1.length, str2.length))
     }
 
     /**

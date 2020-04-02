@@ -170,4 +170,28 @@ class LeetCodeTest {
 
         assertThat(result, `is`(false))
     }
+
+    @Test
+    fun gameOfLife() {
+        val exampleArray = ExampleArray()
+        val result = exampleArray.gameOfLife(
+            arrayOf(
+                intArrayOf(0, 1, 0),
+                intArrayOf(0, 0, 1),
+                intArrayOf(1, 1, 1),
+                intArrayOf(0, 0, 0)
+            )
+        )
+
+        assertThat(
+            result, `is`(
+                arrayOf(
+                    intArrayOf(0, 0, 0),
+                    intArrayOf(1, 0, 1),
+                    intArrayOf(0, 1, 1),
+                    intArrayOf(0, 1, 0)
+                )
+            )
+        )
+    }
 }

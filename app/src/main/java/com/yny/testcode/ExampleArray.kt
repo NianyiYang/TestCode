@@ -1,6 +1,6 @@
 package com.yny.testcode
 
-import java.util.HashSet
+import com.yny.testcode.common.Utils
 
 class ExampleArray {
     /**
@@ -163,24 +163,66 @@ class ExampleArray {
             g = if (g == -1) {
                 entry.value
             } else {
-                gcd(entry.value, g)
+                Utils.gcd(entry.value, g)
             }
         }
 
         return g > 1
     }
 
-    private fun gcd(a: Int, b: Int): Int {
-        // 非递归
-        var tempA = if (a > b) a else b
-        var tempB = if (a > b) b else a
+    /**
+     * 289. 生命游戏
+     */
+    fun gameOfLife(board: Array<IntArray>): Array<IntArray> {
+        // 尝试使用空间复杂度为 O(1) 的方法
+        // 给每一个元素增加十分位保存状态，十分位的数字代表它周围有多少个1
 
-        while (tempB != 0) {
-            val temp = tempB
-            tempB = tempA % tempB
-            tempA = temp
+        // 新方法：八方向方向数组
+        val dir = intArrayOf(0, -1, 1)
+
+        for (i in board.indices) {
+            for (j in board[i].indices) {
+
+                for (m in dir.indices) {
+                    for (n in dir.indices) {
+                        val dx = i + dir[m]
+                        val dy = j + dir[n]
+
+                        if (dx >= 0 && dx < board.size && dy >= 0 && dy < board[i].size) {
+
+                            if (dx == i && dy == j) {
+                                continue
+                            }
+
+                            var origin = board[i][j]
+
+                            // 这里要取余
+                            if (board[dx][dy] % 10 == 1) {
+                                origin += 10
+                                board[i][j] = origin
+                            }
+                        }
+                    }
+                }
+
+            }
         }
 
-        return tempA
+        // 第二步，根据题目规则重置面板状态
+        for (i in board.indices) {
+            for (j in board[i].indices) {
+                val origin = board[i][j]
+
+                // 注意 活细胞 仍然 存活 这个概念
+                board[i][j] = when {
+                    origin / 10 < 2 -> 0
+                    origin / 10 == 2 -> origin % 10
+                    origin / 10 == 3 -> 1
+                    else -> 0
+                }
+            }
+        }
+
+        return board
     }
 }
