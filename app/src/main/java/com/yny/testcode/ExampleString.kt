@@ -1,5 +1,6 @@
 package com.yny.testcode
 
+import com.yny.testcode.common.AutomatonForAToI
 import com.yny.testcode.common.Utils
 import kotlin.math.min
 
@@ -173,10 +174,10 @@ class ExampleString {
 
         for (i in seq.indices) {
             val char = seq[i]
-            if(char == '(') {
+            if (char == '(') {
                 stack++
                 depthArray[i] = stack
-            } else if(char == ')') {
+            } else if (char == ')') {
                 depthArray[i] = stack
                 stack--
             }
@@ -189,5 +190,19 @@ class ExampleString {
         }
 
         return depthArray
+    }
+
+    /**
+     * 8. 字符串转换整数 (atoi)
+     *
+     * DFA 有限状态自动机
+     */
+    fun myAtoi(str: String): Int {
+        val automaton = AutomatonForAToI()
+        for (c in str) {
+            automaton.run(c)
+        }
+
+        return if(automaton.isSign) automaton.result else -automaton.result
     }
 }
