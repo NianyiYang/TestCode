@@ -1,8 +1,14 @@
 package com.yny.testcode
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * MainActivity
+ *
+ * @author Yang
+ * @date 2020.4.5 21:40
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
