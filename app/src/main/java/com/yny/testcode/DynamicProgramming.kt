@@ -1,6 +1,7 @@
 package com.yny.testcode
 
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * 动态规划相关
@@ -55,7 +56,7 @@ class DynamicProgramming {
     fun massage(nums: IntArray): Int {
         val length = nums.size
 
-        if(length == 0) {
+        if (length == 0) {
             return 0
         }
 
@@ -76,5 +77,40 @@ class DynamicProgramming {
         }
 
         return dp[dp.size - 1]
+    }
+
+    /**
+     * 72. 编辑距离
+     *
+     * 给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。
+     */
+    fun minDistance(word1: String, word2: String): Int {
+        // 构建DP数组 空字符需要单独考虑 所以长度都加1
+        val row = word1.length + 1
+        val col = word2.length + 1
+
+        // kotlin 的二维数组初始化就是这么变态
+        val dp = Array(size = row, init = { IntArray(col) })
+
+        for (i in 0 until row) {
+            dp[i][0] = i
+        }
+
+        for (j in 0 until col) {
+            dp[0][j] = j
+        }
+
+        for (i in 1 until row) {
+            for (j in 1 until col) {
+                // 注意这里是判断上一个字符是否相同，来决定下一步操作
+                if (word1[i - 1] == word2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1]
+                } else {
+                    dp[i][j] = min(dp[i - 1][j], min(dp[i][j - 1], dp[i - 1][j - 1])) + 1
+                }
+            }
+        }
+
+        return dp[word1.length][word2.length]
     }
 }
