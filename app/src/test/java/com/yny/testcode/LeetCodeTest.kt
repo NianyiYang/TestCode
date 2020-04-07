@@ -214,4 +214,27 @@ class LeetCodeTest {
 //        cache.put(0, 0)
 //        assertThat(cache.get(0), `is`(-1))
     }
+
+    @Test
+    fun rotate() {
+        val exampleMatrix = ExampleMatrix()
+        val result = exampleMatrix.rotate(
+            arrayOf(
+                intArrayOf(1, 2, 3),
+                intArrayOf(4, 5, 6),
+                intArrayOf(7, 8, 9)
+            )
+        )
+
+        assertThat(
+            result, `is`(
+                arrayOf(
+                    intArrayOf(1, 2, 3),
+                    intArrayOf(4, 5, 6),
+                    intArrayOf(7, 8, 9)
+                )
+            )
+        )
+
+    }
 }
