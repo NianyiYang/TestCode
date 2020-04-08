@@ -227,4 +227,71 @@ class ExampleArray {
 
         return board
     }
+
+    /**
+     * 面试题13. 机器人的运动范围
+     *
+     * 地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。
+     * 一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），
+     * 也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，
+     * 因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+     */
+    fun movingCount(m: Int, n: Int, k: Int): Int {
+        // 图的遍历
+        val graph = Array(m) { IntArray(n) }
+        visit(graph, 0, 0, k)
+
+        var count = 0
+        for (i in graph.indices) {
+            for (j in graph[i].indices) {
+                if (graph[i][j] == 1) {
+                    count++
+                }
+            }
+        }
+
+        return count
+    }
+
+    fun visit(graph: Array<IntArray>, x: Int, y: Int, k: Int) {
+
+        // 遍历时加上自己
+        val dx = intArrayOf(-1, 0, 1, 0, 0)
+        val dy = intArrayOf(0, -1, 0, 1, 0)
+
+        for (n in 0 .. 4) {
+            val nx = x + dx[n]
+            val ny = y + dy[n]
+
+            if (nx >= 0 && nx < graph.size && ny >= 0 && ny < graph[0].size && graph[nx][ny] == 0) {
+
+                // 计算 nx 和 ny 各位数的和
+                val sum = calc(nx, ny)
+
+                if (sum <= k) {
+                    graph[nx][ny] = 1
+                    visit(graph, nx, ny, k)
+                }
+            }
+        }
+    }
+
+    private fun calc(x: Int, y: Int): Int {
+
+        var tempX = x
+        var tempY = y
+
+        var sum = 0
+        while (tempX > 0) {
+            sum += tempX % 10
+            tempX /= 10
+        }
+
+        while (tempY > 0) {
+            sum += tempY % 10
+            tempY /= 10
+        }
+
+        return sum
+    }
 }
