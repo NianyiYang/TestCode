@@ -4,6 +4,8 @@ import com.yny.testcode.common.Utils
 
 class ExampleArray {
     /**
+     * 面试题 10.01. 合并排序的数组
+     *
      * 三指针倒序遍历，原地操作，空间复杂度 O(1)
      **/
     fun merge(A: IntArray, m: Int, B: IntArray, n: Int) {
