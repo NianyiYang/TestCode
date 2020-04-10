@@ -237,4 +237,12 @@ class LeetCodeTest {
         )
 
     }
+
+    @Test
+    fun reverseWords() {
+        val exampleString = ExampleString()
+        val result = exampleString.reverseWords(" a b")
+
+        assertThat(result, `is`("b a"))
+    }
 }

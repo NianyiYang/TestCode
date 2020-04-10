@@ -2,6 +2,8 @@ package com.yny.testcode
 
 import com.yny.testcode.common.AutomatonForAToI
 import com.yny.testcode.common.Utils
+import java.util.*
+import kotlin.collections.HashMap
 import kotlin.math.min
 
 class ExampleString {
@@ -203,6 +205,61 @@ class ExampleString {
             automaton.run(c)
         }
 
-        return if(automaton.isSign) automaton.result else -automaton.result
+        return if (automaton.isSign) automaton.result else -automaton.result
     }
+
+    /**
+     * 151. 翻转字符串里的单词
+     */
+    fun reverseWords(s: String): String {
+
+        // 用 栈 存 单词
+        val stack = Stack<String>()
+
+        val words = s.trim()
+
+        // 双指针
+        var p = 0
+
+        for (index in words.indices) {
+
+            if (index == 0 || isEmptyBefore(index, words)) {
+                // 表示单词开始
+                p = index
+
+                // 单个单词的情况
+                if(isEmptyAfter(index, words) || index == words.length - 1) {
+
+                    if(index == words.length - 1) {
+                        stack.push(" ")
+                    }
+
+                    stack.push(words.substring(p, index + 1))
+                    continue
+                }
+            } else if (words[index] == ' ' && isNotEmptyBefore(index, words)) {
+                // 表示单词结束
+                if(index - p > 1) {
+                    stack.push(words.substring(p, index))
+                    stack.push(" ")
+                }
+            } else if (index == words.length - 1) {
+                // 结尾
+                stack.push(words.substring(p, index + 1))
+            }
+        }
+
+        var result = ""
+
+        for (i in 0 until stack.size) {
+            result += stack.pop()
+        }
+
+        return result
+    }
+
+    private fun isEmptyBefore(index: Int, words: String) = index - 1 >= 0 && words[index - 1] == ' '
+    private fun isEmptyAfter(index: Int, words: String) = index + 1 < words.length && words[index + 1] == ' '
+    private fun isNotEmptyBefore(index: Int, words: String) =
+        index - 1 >= 0 && words[index - 1] != ' '
 }
