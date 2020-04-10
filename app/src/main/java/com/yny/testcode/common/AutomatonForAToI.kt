@@ -35,10 +35,10 @@ class AutomatonForAToI {
      * 根据字符判断状态表中的 index
      */
     fun getIndex(char: Char) = when (char) {
-        ' ' -> 0
-        '+', '-' -> 1
-        in '0'..'9' -> 2
-        else -> 3
+        ' ' -> START
+        '+', '-' -> SIGNED
+        in '0'..'9' -> IN_NUMBER
+        else -> END
     }
 
     /**

@@ -21,4 +21,12 @@ class ExampleStack {
     fun getMin(): Int {
         return stack.min() ?: Int.MIN_VALUE
     }
+
+    /**
+     * 22. 括号生成
+     */
+    fun generateParenthesis(n: Int): List<String> {
+        // 找到所有可能出现左括号的位置
+        return mutableListOf()
+    }
 }
