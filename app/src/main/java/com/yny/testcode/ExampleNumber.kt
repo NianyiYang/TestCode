@@ -100,4 +100,44 @@ class ExampleNumber {
             (m + x) % n
         }
     }
+
+    /**
+     * 15. 三数之和
+     */
+    fun threeSum(nums: IntArray): List<List<Int>> {
+
+        val resultSet = HashSet<List<Int>>()
+
+        // p1 第一个的位置 p2 第一个的值 p3 第二个的位置 p4 第二个的值
+        val matched = mutableListOf<IntArray>()
+
+        // 先正向排序，剪枝
+        val sortedNums = nums.sorted()
+
+        // 如果数组为空，或者排序后第一个就为正数，则不用往下算了
+        if (sortedNums.isEmpty() || sortedNums[0] > 0) {
+            return mutableListOf()
+        }
+
+        for (i in sortedNums.indices) {
+            for (j in i + 1 until sortedNums.size) {
+                // 如果 i,j 处的数据都大于 0 ，则不用加入数组了
+                if (sortedNums[i] > 0 && sortedNums[j] > 0) {
+                    break
+                } else {
+                    matched.add(intArrayOf(i, sortedNums[i], j, sortedNums[j]))
+                }
+            }
+        }
+
+        for (k in 2 until sortedNums.size) {
+            for (l in matched) {
+                if (k != l[0] && k != l[2] && sortedNums[k] + l[1] + l[3] == 0) {
+                    resultSet.add(listOf(l[1], l[3], sortedNums[k]).sorted())
+                }
+            }
+        }
+
+        return resultSet.toList()
+    }
 }

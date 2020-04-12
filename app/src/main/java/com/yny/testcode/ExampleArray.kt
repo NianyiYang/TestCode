@@ -1,6 +1,7 @@
 package com.yny.testcode
 
 import com.yny.testcode.common.Utils
+import kotlin.math.min
 
 class ExampleArray {
     /**
@@ -259,7 +260,7 @@ class ExampleArray {
         val dx = intArrayOf(-1, 0, 1, 0, 0)
         val dy = intArrayOf(0, -1, 0, 1, 0)
 
-        for (n in 0 .. 4) {
+        for (n in 0..4) {
             val nx = x + dx[n]
             val ny = y + dy[n]
 
@@ -293,5 +294,34 @@ class ExampleArray {
         }
 
         return sum
+    }
+
+    /**
+     * 11. 盛最多水的容器
+     */
+    fun maxArea(height: IntArray): Int {
+        var result = -1
+
+        var p = 0
+        var q = height.size - 1
+
+        // 双指针，每次移动较小的那个柱子
+        while (p != q) {
+            if (result < calcArea(p, q, height)) {
+                result = calcArea(p, q, height)
+            }
+
+            if(height[p] < height[q]) {
+                p++
+            } else {
+                q--
+            }
+        }
+
+        return result
+    }
+
+    fun calcArea(p: Int, q: Int, height: IntArray): Int {
+        return (q - p) * min(height[p], height[q])
     }
 }
