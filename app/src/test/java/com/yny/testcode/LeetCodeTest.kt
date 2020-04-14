@@ -260,4 +260,18 @@ class LeetCodeTest {
             )
         )
     }
+
+    @Test
+    fun letterCombinations() {
+        val exampleNumber = ExampleNumber()
+        val result = exampleNumber.letterCombinations("23")
+
+        assertThat(
+            result, `is`(
+                listOf(
+                    "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"
+                )
+            )
+        )
+    }
 }

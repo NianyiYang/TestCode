@@ -206,37 +206,41 @@ class ExampleNumber {
     /**
      * 17. 电话号码的字母组合
      */
+    private val result: MutableList<String> = mutableListOf()
+
+    private val map = hashMapOf(
+        Pair(2, arrayOf('a', 'b', 'c')),
+        Pair(3, arrayOf('d', 'e', 'f')),
+        Pair(4, arrayOf('g', 'h', 'i')),
+        Pair(5, arrayOf('j', 'k', 'l')),
+        Pair(6, arrayOf('m', 'n', 'o')),
+        Pair(7, arrayOf('p', 'q', 'r', 's')),
+        Pair(8, arrayOf('t', 'u', 'v')),
+        Pair(9, arrayOf('w', 'x', 'y', 'z'))
+    )
+
     fun letterCombinations(digits: String): List<String> {
-        val map = hashMapOf(
-            Pair(2, arrayOf('a', 'b', 'c')),
-            Pair(3, arrayOf('d', 'e', 'f')),
-            Pair(4, arrayOf('g', 'h', 'i')),
-            Pair(5, arrayOf('j', 'k', 'l')),
-            Pair(6, arrayOf('m', 'n', 'o')),
-            Pair(7, arrayOf('p', 'q', 'r', 's')),
-            Pair(8, arrayOf('t', 'u', 'v')),
-            Pair(9, arrayOf('w', 'x', 'y', 'z'))
-        )
-
-        val seqs = mutableListOf<Array<Char>>()
-
-        for (digit in digits) {
-            val number = digit.toInt()
-            if(map.contains(number)) {
-                seqs.add(map[number]!!)
-            }
-        }
-
-        calc(seqs)
-
-        return listOf()
+        calc("", digits, 0)
+        return result
     }
 
-    private fun calc(seqs: MutableList<Array<Char>>) {
-        if (seqs.isNullOrEmpty()) {
-            return
-        }
+    // 回溯法递归
+    private fun calc(combination: String, digits: String, index: Int) {
 
-        while (seqs)
+        if (index < digits.length) {
+
+            val number = digits[index].toString().toInt()
+
+            if (map.contains(number)) {
+                val chars = map[number]
+                if (chars != null && chars.isNotEmpty()) {
+                    for (char in chars) {
+                        result.remove(combination)
+                        result.add(combination + char)
+                        calc(combination + char, digits, index + 1)
+                    }
+                }
+            }
+        }
     }
 }
