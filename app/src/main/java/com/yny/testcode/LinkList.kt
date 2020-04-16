@@ -160,4 +160,25 @@ class LinkList {
 
         return false
     }
+
+    /**
+     * 23. 合并K个有序链表
+     */
+    fun mergeKLists(lists: Array<ListNode?>): ListNode? {
+
+        if (lists.isEmpty()) {
+            return null
+        }
+
+        val prevHead = ListNode(-1)
+
+        for (list in lists) {
+
+            if (list != null) {
+                prevHead.next = mergeTwoLists(prevHead.next, list)!!
+            }
+        }
+
+        return prevHead.next
+    }
 }
