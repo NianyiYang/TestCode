@@ -181,4 +181,55 @@ class LinkList {
 
         return prevHead.next
     }
+
+    /**
+     * 19. 删除链表的倒数第N个节点
+     */
+    fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
+        var p = head
+        var q = head
+
+        var index = 0
+
+        while (p != null) {
+            p = p.next
+            index++
+
+            if (index - 1 > n) {
+                q = q!!.next
+            }
+        }
+
+        if (index == n) {
+            return head?.next
+        }
+
+        q?.next = q?.next?.next
+
+        return head
+    }
+
+    /**
+     * 24. 两两交换链表中的节点
+     */
+    fun swapPairs(head: ListNode?): ListNode? {
+
+        if (head?.next == null) {
+            return head
+        }
+
+        var start = head
+        var end = head.next
+
+        while (start != null && end != null) {
+            val temp = start.`val`
+            start.`val` = end.`val`
+            end.`val` = temp
+
+            start = start.next?.next
+            end = end.next?.next
+        }
+
+        return head
+    }
 }

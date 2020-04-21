@@ -274,4 +274,18 @@ class LeetCodeTest {
             )
         )
     }
+
+    @Test
+    fun removeNthFromEnd() {
+        val head = LinkList.ListNode(1)
+//        head.next = LinkList.ListNode(2)
+//        head.next!!.next = LinkList.ListNode(3)
+//        head.next!!.next!!.next = LinkList.ListNode(4)
+//        head.next!!.next!!.next!!.next = LinkList.ListNode(5)
+
+        val linkList = LinkList()
+        val result = linkList.removeNthFromEnd(head, 1)
+
+        assertThat(result, `is`(head))
+    }
 }
