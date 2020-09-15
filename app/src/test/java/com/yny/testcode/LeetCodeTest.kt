@@ -288,4 +288,23 @@ class LeetCodeTest {
 
         assertThat(result, `is`(head))
     }
+
+    @Test
+    fun reverseList() {
+        val head = LinkList.ListNode(1)
+        head.next = LinkList.ListNode(2)
+        head.next!!.next = LinkList.ListNode(3)
+        head.next!!.next!!.next = LinkList.ListNode(4)
+        head.next!!.next!!.next!!.next = LinkList.ListNode(5)
+
+        val result = LinkList().reverseList(head)
+
+        val compare = LinkList.ListNode(5)
+        compare.next = LinkList.ListNode(4)
+        compare.next!!.next = LinkList.ListNode(3)
+        compare.next!!.next!!.next = LinkList.ListNode(2)
+        compare.next!!.next!!.next!!.next = LinkList.ListNode(1)
+
+        // assertThat(result, `is`(equals(compare)))
+    }
 }
